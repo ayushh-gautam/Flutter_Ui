@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/utils.dart';
@@ -84,35 +86,50 @@ class HomeScreen extends StatelessWidget {
             //posts
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return Column(
                   children: [
                     Container(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
                       decoration: const BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              bottomLeft: Radius.circular(20))),
-                      height: 200,
-                      child: const Center(
-                        child: Text(
-                          'Hello',
-                          style: TextStyle(color: Colors.white),
-                        ),
+                              topLeft: Radius.circular(50),
+                              bottomLeft: Radius.circular(50))),
+                      height: 250,
+                      child: Image.network(
+                        'https://images.pexels.com/photos/3109850/pexels-photo-3109850.jpeg?cs=srgb&dl=pexels-anni-roenkae-3109850.jpg&fm=jpg',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
                       ),
                     ),
-                    Row(
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Spacer(),
                         Text(
-                          'Hello',
-                          style: TextStyle(color: Colors.white),
+                          'A simple purple background',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
+                        Spacer(),
+                        Icon(
+                          CupertinoIcons.conversation_bubble,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                        Spacer(),
+                        Icon(
+                          CupertinoIcons.heart,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                        Spacer()
                       ],
-                    )
+                    ).marginOnly(top: 10)
                   ],
-                ).marginOnly(top: 20, left: 30);
+                ).marginOnly(top: 20, left: 50);
               },
               itemCount: 3,
             ),
